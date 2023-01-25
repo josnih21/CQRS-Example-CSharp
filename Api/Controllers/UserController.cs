@@ -12,14 +12,14 @@ namespace Api.Controllers;
 public class UserController : ControllerBase
 {
     readonly CommandBus _commandBus = new CommandBus();
-    private readonly UserByEmailQueryHandler _userByEmailQueryHandler = new UserByEmailQueryHandler();
+    private readonly UserByEmailUseCase _userByEmailUseCase = new UserByEmailUseCase();
+
 
     [HttpGet($"{{email}}")]
     public String Get(string email)
     {
         var userByEmail = new UserByEmail(email);
-        var userName = _userByEmailQueryHandler.Handle(userByEmail);
-        return userName;
+        return _userByEmailUseCase.Execute(userByEmail.Email);
     }
 
     [HttpPost]
