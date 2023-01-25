@@ -4,7 +4,7 @@ using CQRS.QueryResult;
 
 namespace CQRS.QueryHandler;
 
-public class UserByEmailQueryHandler : IQueryHandler<User, UserByEmail>
+public class UserByEmailQueryHandler : IQueryHandler<String, UserByEmail>
 {
     private readonly UserByEmailUseCase _userByEmailUseCase = new UserByEmailUseCase();
 
@@ -14,9 +14,9 @@ public class UserByEmailQueryHandler : IQueryHandler<User, UserByEmail>
         Handle(query);
     }
 
-    public User Handle(UserByEmail query)
+    public String Handle(UserByEmail query)
     {
         var queryResult = _userByEmailUseCase.Execute(query.Email);
-        return new User { userName = queryResult.userName, email = queryResult.email, age = queryResult.age };
+        return queryResult;
     }
 }

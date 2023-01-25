@@ -5,7 +5,7 @@ namespace CQRS.CommandHandler;
 
 public class CreateUserUseCase
 {
-    private readonly UserRepository _userRepository = new UserRepository();
+    private readonly UserWriteRepository _userWriteRepository = new UserWriteRepository();
     public void Execute(string userName, string email, int age)
     {
         var user = new User
@@ -16,7 +16,6 @@ public class CreateUserUseCase
         };
 
         Console.WriteLine("Handling the command to write into the database");
-        //_userRepository.GetAllDocuments();
-        //Now I should call my repository to write directly into the write model
+        _userWriteRepository.createUser(user);
     }
 }

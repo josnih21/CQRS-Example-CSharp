@@ -15,11 +15,11 @@ public class UserController : ControllerBase
     private readonly UserByEmailQueryHandler _userByEmailQueryHandler = new UserByEmailQueryHandler();
 
     [HttpGet($"{{email}}")]
-    public UserDto Get(string email)
+    public String Get(string email)
     {
         var userByEmail = new UserByEmail(email);
-        var user = _userByEmailQueryHandler.Handle(userByEmail);
-        return new UserDto { age = user.age, email = user.email, userName = user.userName };
+        var userName = _userByEmailQueryHandler.Handle(userByEmail);
+        return userName;
     }
 
     [HttpPost]
