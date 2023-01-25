@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Api.Controllers;
 
+//TODO: Refactor create controller for each endpoint
 [ApiController]
 [Route("[controller]")]
 public class UserController : ControllerBase

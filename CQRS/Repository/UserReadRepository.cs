@@ -2,19 +2,25 @@
 
 public class UserReadRepository
 {
-    private List<QueryUserDTO> _queryUserDtos = new List<QueryUserDTO>();
+    public static List<QueryUserDto> queryUserDtos = new List<QueryUserDto>();
 
     public string FindUserName(string email)
     {
-        var name = _queryUserDtos
+        var name = queryUserDtos
             .Find(value => value.Email == email)?
             .Name;
         return name;
     }
 }
 
-class QueryUserDTO
+public class QueryUserDto
 {
-    public string Email { get; set; }
-    public string Name { get; set; }
+    public QueryUserDto(string email, string name)
+    {
+        Email = email;
+        Name = name;
+    }
+
+    public string Email { get; }
+    public string Name { get; }
 }
