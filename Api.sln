@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{922A5E2E-8A54-4014-B0E2-9E0DE987DC55}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CQRS", "CQRS\CQRS.csproj", "{9CC4C173-9E18-4D86-A800-D1586C565558}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{922A5E2E-8A54-4014-B0E2-9E0DE987DC55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{922A5E2E-8A54-4014-B0E2-9E0DE987DC55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{922A5E2E-8A54-4014-B0E2-9E0DE987DC55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{922A5E2E-8A54-4014-B0E2-9E0DE987DC55}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CC4C173-9E18-4D86-A800-D1586C565558}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CC4C173-9E18-4D86-A800-D1586C565558}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CC4C173-9E18-4D86-A800-D1586C565558}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CC4C173-9E18-4D86-A800-D1586C565558}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
