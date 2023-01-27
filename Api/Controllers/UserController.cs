@@ -12,8 +12,13 @@ namespace Api.Controllers;
 [Route("[controller]")]
 public class UserController : ControllerBase
 {
-    readonly CommandBus _commandBus = new CommandBus();
+    private IMessageSession _messageSession;
     private readonly UserByEmailUseCase _userByEmailUseCase = new UserByEmailUseCase();
+
+    public UserController(IMessageSession messageSession)
+    {
+        _messageSession = messageSession;
+    }
 
 
     [HttpGet($"{{email}}")]
@@ -24,10 +29,11 @@ public class UserController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult Post([FromBody] UserDto userDto)
+    public async Task<IActionResult> Post([FromBody] UserDto userDto)
     {
-        var createUserCommand = new CreateUserCommand(userDto.userName, userDto.age, userDto.email);
-        _commandBus.Dispatch(createUserCommand);
+        var createUserCommand = new CreateUserCommand{UserName = userDto.userName, Age = userDto.age, Email = userDto.email};
+        await _messageSession.Send(createUserCommand).ConfigureAwait(false);
+        Console.WriteLine("Message sent to NServiceBus");
         return Ok();
     }
 }

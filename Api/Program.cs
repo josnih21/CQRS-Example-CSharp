@@ -1,25 +1,38 @@
-var builder = WebApplication.CreateBuilder(args);
+using CQRS.Command;
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+public class Program
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    public static Task Main()
+    {
+        var builder = WebApplication.CreateBuilder();
+        builder.Host.UseNServiceBus(context =>
+        {
+            var endpointConfiguration = new EndpointConfiguration("API-Sender");
+            var transport = endpointConfiguration.UseTransport(new LearningTransport());
+            transport.RouteToEndpoint(assembly: typeof(CreateUserCommand).Assembly, destination: "UserNServiceBus");
+            endpointConfiguration.SendOnly();
+            return endpointConfiguration;
+        });
+        
+        builder.Services.AddControllers();
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
+
+
+        var app = builder.Build();
+
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI();
+        }
+
+        app.UseHttpsRedirection();
+
+        app.UseAuthorization();
+
+        app.MapControllers();
+
+        return app.RunAsync();
+    }
 }
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();

@@ -2,7 +2,7 @@
 
 namespace CQRS.EventHandler;
 
-public interface IEventHandler <in TParameter> where TParameter : IEvent
+public interface IEventHandler <in TParameter>
 {
     void Handle(TParameter @event);
 }

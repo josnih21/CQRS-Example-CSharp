@@ -19,8 +19,8 @@ public class CreateUserUseCase
             age = age
         };
 
+        _userWriteRepository.createUser(user);
         _eventBus.Dispatch(new UserCreatedEvent (user.userName, user.email, user.age));
         Console.WriteLine("Handling the command to write into the database");
-        _userWriteRepository.createUser(user);
     }
 }

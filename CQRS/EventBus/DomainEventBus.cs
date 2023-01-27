@@ -14,12 +14,12 @@ public class DomainEventBus
         _dictionary.Add(typeof(UserCreatedEvent), new UserCreatedEventHandler());
     }
 
-    public void Dispatch<TParameter>(TParameter @event) where TParameter : IEvent
+    public void Dispatch<TParameter>(TParameter @event)
     {
         RunEvent<TParameter>(@event);
     }
 
-    private void RunEvent<TParameter>(TParameter @event) where TParameter : IEvent
+    private void RunEvent<TParameter>(TParameter @event)
     {
         var eventHandler = (IEventHandler<TParameter>) _dictionary[@event.GetType()];
 

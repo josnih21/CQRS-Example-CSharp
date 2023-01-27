@@ -4,7 +4,6 @@ using CQRS.CommandHandler;
 namespace CQRS.Dispatcher;
 public class CommandBus
 {
-    //TODO: Check if we can check TParams type from class
     private Dictionary<Type, Object> _dictionary;
 
     public CommandBus()
@@ -13,12 +12,12 @@ public class CommandBus
         _dictionary.Add(typeof(CreateUserCommand), new CreateUserCommandHandler());
     }
 
-    public void Dispatch<TParameter>(TParameter command) where TParameter : ICommand
+    public void Dispatch<TParameter>(TParameter command) where TParameter : NServiceBus.ICommand
     {
         RunCommand<TParameter>(command);
     }
 
-    private void RunCommand<TParameter>(TParameter command) where TParameter : ICommand
+    private void RunCommand<TParameter>(TParameter command) where TParameter : NServiceBus.ICommand
     {
         var commandHandler = (ICommandHandler<TParameter>) _dictionary[command.GetType()];
 
