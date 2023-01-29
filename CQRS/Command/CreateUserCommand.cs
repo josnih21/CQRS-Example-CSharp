@@ -2,7 +2,7 @@
 
 namespace CQRS.Command;
 
-public class CreateUserCommand : NServiceBus.ICommand
+public class CreateUserCommand : ICommand
 {
     public string UserName { get; set; }
     public int Age { get; set; }

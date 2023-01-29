@@ -1,6 +1,6 @@
 ﻿namespace CQRS.Event;
 
-public class UserCreatedEvent : NServiceBus.IEvent
+public class UserCreatedEvent : IEvent
 {
     public string UserName { get; }
     public string Email { get; }
