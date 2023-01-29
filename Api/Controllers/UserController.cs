@@ -1,5 +1,4 @@
 ﻿using CQRS.Command;
-using CQRS.Dispatcher;
 using CQRS.Dto;
 using CQRS.Query;
 using CQRS.QueryHandler;

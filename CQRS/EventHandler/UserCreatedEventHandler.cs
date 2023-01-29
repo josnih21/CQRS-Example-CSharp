@@ -2,10 +2,12 @@
 
 namespace CQRS.EventHandler;
 
-public class UserCreatedEventHandler : IEventHandler<UserCreatedEvent>
+public class UserCreatedEventHandler : IHandleMessages<UserCreatedEvent>
 {
-    public void Handle(UserCreatedEvent @event)
+    public Task Handle(UserCreatedEvent message, IMessageHandlerContext context)
     {
-        new UserSynchronizer().sync(@event.UserName, @event.Email);
+        new UserSynchronizer().sync(message.UserName, message.Email);
+        Console.WriteLine("Received Event when user created");
+        return Task.CompletedTask;
     }
 }
